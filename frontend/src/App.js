@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./App.css";
 
-const BACKEND_URL = "https://lung-cancer-detection-vit.onrender.com/predict";
+const BACKEND_URL =
+  process.env.REACT_APP_BACKEND_URL || "http://127.0.0.1:5000/predict";
 
 function App() {
   const [file, setFile] = useState(null);
@@ -35,7 +36,7 @@ function App() {
       const data = await response.json();
       setResult(data);
     } catch (err) {
-      setError("Prediction failed. Make sure backend is running.");
+      setError("Prediction failed. Backend unreachable.");
     }
 
     setLoading(false);
@@ -44,9 +45,7 @@ function App() {
   return (
     <div className="container">
       <h1>Lung Cancer Detection</h1>
-      <p className="subtitle">
-        Upload a preprocessed CT volume (.npy)
-      </p>
+      <p className="subtitle">Upload a preprocessed CT volume (.npy)</p>
 
       <input
         type="file"
