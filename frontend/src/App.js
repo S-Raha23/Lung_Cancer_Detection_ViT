@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 
-const BACKEND_URL = "http://127.0.0.1:5000/predict";
+const BACKEND_URL = "https://lung-cancer-detection-vit.onrender.com/predict";
 
 function App() {
   const [file, setFile] = useState(null);
